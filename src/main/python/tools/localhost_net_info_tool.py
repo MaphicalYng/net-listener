@@ -3,9 +3,14 @@
 This class is used to get info about net device of localhost.
 """
 import psutil
+import socket
 
 
 class LocalhostNetInfoTool(object):
+    ipv4 = socket.AF_INET
+    ipv6 = socket.AF_INET6
+    mac = socket.AF_PACKET
+
     def __init__(self):
         self._raw = psutil.net_if_addrs()
 

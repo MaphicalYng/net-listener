@@ -3,7 +3,7 @@ import socket
 import struct
 import binascii
 
-s = socket.socket(socket.PF_PACKET, socket.SOCK_RAW, socket.htons(0x0800))
+s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0800))
 data = s.recvfrom(2048)
 pack = data[0]
 frame_header_b = pack[0:14]

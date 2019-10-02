@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This class is used to be a sniffer of the local net.
+这个工具类用来对局域网络进行嗅探。
 """
 import socket
 

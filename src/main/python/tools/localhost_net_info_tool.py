@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This class is used to get info about net device of localhost.
+这个工具类用来读取本地网络配置信息
 """
 import psutil
 import socket

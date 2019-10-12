@@ -285,15 +285,12 @@
        <string>停止</string>
       </property>
      </widget>
-     <widget class="QListView" name="sniffer_ip_list">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+     <widget class="QTableView" name="sniffer_table">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>681</width>
+        <x>5</x>
+        <y>31</y>
+        <width>691</width>
         <height>481</height>
        </rect>
       </property>
@@ -302,13 +299,13 @@
       <property name="geometry">
        <rect>
         <x>13</x>
-        <y>27</y>
+        <y>37</y>
         <width>681</width>
-        <height>481</height>
+        <height>471</height>
        </rect>
       </property>
       <property name="text">
-       <string>点击右下角按钮开始或停止嗅探。</string>
+       <string>点击右下方按钮开始或停止嗅探</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -385,7 +382,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -421,7 +418,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="target_ip_edit">
+        <widget class="QLineEdit" name="scan_target_ip_edit">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -486,6 +483,9 @@
            <width>31</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="text">
+          <string>3</string>
          </property>
         </widget>
        </item>
@@ -643,23 +643,39 @@
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>窗口</string>
+     <string>操作</string>
     </property>
-    <addaction name="actionClose"/>
+    <addaction name="action_about"/>
+    <addaction name="action_close"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionClose">
+  <action name="action_close">
    <property name="text">
     <string>退出</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>关于本软件</string>
+   </property>
+  </action>
+  <action name="action_about">
+   <property name="text">
+    <string>关于本软件</string>
+   </property>
+  </action>
+  <action name="actionGfdsg">
+   <property name="text">
+    <string>gfdsg</string>
    </property>
   </action>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>actionClose</sender>
+   <sender>action_close</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>

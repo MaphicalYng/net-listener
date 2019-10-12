@@ -4,6 +4,7 @@
 """
 import psutil
 import socket
+import netifaces
 
 
 class LocalhostNetInfoTool(object):
@@ -25,3 +26,6 @@ class LocalhostNetInfoTool(object):
             device = {name: device_info}
             result.append(device)
         return result
+
+    def get_running_card_name(self):
+        return netifaces.gateways()['default'][netifaces.AF_INET][1]

@@ -7,4 +7,5 @@ psutil==5.6.3
 PyInstaller==3.5
 PySide2==5.13.1
 pywin32-ctypes==0.2.0
+scapy==2.4.3
 shiboken2==5.13.1

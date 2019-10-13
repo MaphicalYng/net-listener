@@ -26,21 +26,24 @@ class NetSnifferTool(object):
     def get_sniffer_status(self):
         return self._status
 
-    def start_sniffer_thread(self, table_view_model, table_view):
+    def start_sniffer_thread(self, table_view_model, table_view, status_bar):
         """
         启动嗅探线程。
         """
-        # 获得网关的和本机的MAC地址
-        addresses = OtherToolFunctionSet.get_localhost_gateway_mac()
-        localhost_mac = addresses[0]
-        gateway_mac = addresses[1]
-
         # 启动线程
         def _sniffer_thread():
             """
             线程嗅探逻辑
             """
             print(threading.current_thread().name + '：嗅探线程已启动。')
+            # 获得网关的和本机的MAC地址
+            status_bar.showMessage('准备嗅探……')
+            running_card = OtherToolFunctionSet.get_running_card_name()
+            addresses = OtherToolFunctionSet.get_localhost_gateway_mac(running_card)
+            localhost_mac = addresses[0]
+            gateway_mac = addresses[1]
+
+            status_bar.showMessage('正在嗅探……')
 
             def __turn_mac_style(mac_raw):
                 return mac_raw[0:2] + ':' + mac_raw[2:4] + ':' + mac_raw[4:6]\
@@ -101,5 +104,3 @@ class NetSnifferTool(object):
         停止嗅探线程
         """
         self._status = False
-        # if self._sniffer_thread is not None:
-        #    self._sniffer_thread.join()

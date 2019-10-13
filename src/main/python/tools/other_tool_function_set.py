@@ -37,19 +37,21 @@ class OtherToolFunctionSet(object):
         return os.system(command) == 0
 
     @staticmethod
-    def get_localhost_gateway_mac():
+    def get_localhost_gateway_mac(card_name):
         """
         获取当前网卡的MAC地址和网关的MAC地址
         :return: 本机MAC地址、网关MAC地址和网关IP地址
         """
-        card_name = netifaces.gateways()['default'][netifaces.AF_INET][1]
         gateway_ip_address = netifaces.gateways()['default'][netifaces.AF_INET][0]
         localhost_mac_address = netifaces.ifaddresses(card_name)[netifaces.AF_LINK][0]['addr']
 
         # 通过ARP获取网关MAC
         command = 'arp ' + gateway_ip_address
+        print('执行外部Shell命令：' + command)
         shell_result = os.popen(command).readlines()[1]
         gateway_mac_address = shell_result.split()[2]
         return localhost_mac_address, gateway_mac_address, gateway_ip_address
 
-
+    @staticmethod
+    def get_running_card_name():
+        return netifaces.gateways()['default'][netifaces.AF_INET][1]

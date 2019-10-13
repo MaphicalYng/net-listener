@@ -49,7 +49,7 @@ class PortScanningTool(object):
             # 修改控件状态
             scan_start_button.setEnabled(True)
             scan_stop_button.setEnabled(False)
-            self._status_bar.showMessage('扫描已停止。')
+            self._status_bar.showMessage('端口扫描已停止。')
             print(threading.current_thread().name + '：扫描线程已停止。')
 
         scan_thread = threading.Thread(target=_scan_thread, name='Scan-Thread')

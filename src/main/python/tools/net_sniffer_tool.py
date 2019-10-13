@@ -26,7 +26,7 @@ class NetSnifferTool(object):
     def get_sniffer_status(self):
         return self._status
 
-    def start_sniffer_thread(self, table_view_model, table_view, status_bar):
+    def start_sniffer_thread(self, table_view_model, table_view, status_bar, start_button, stop_button):
         """
         启动嗅探线程。
         """
@@ -94,6 +94,12 @@ class NetSnifferTool(object):
 
                 table_view.resizeColumnsToContents()
 
+            # 关闭网卡混杂模式
+            OtherToolFunctionSet.turn_net_card_promisc(False)
+            # 修改控件状态
+            start_button.setEnabled(True)
+            stop_button.setEnabled(False)
+            status_bar.showMessage('嗅探已停止，网卡混杂模式已关闭。')
             print(threading.current_thread().name + '：嗅探线程已停止。')
 
         self._sniffer_thread = threading.Thread(target=_sniffer_thread, name='Sniffer-Thread')

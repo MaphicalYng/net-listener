@@ -113,7 +113,8 @@ class MainWindow(QMainWindow):
 
         # 开启嗅探线程
         self._sniffer_tool = NetSnifferTool()
-        self._sniffer_tool.start_sniffer_thread(self._table_model, self.ui.sniffer_table, self.statusBar())
+        self._sniffer_tool.start_sniffer_thread(self._table_model, self.ui.sniffer_table, self.statusBar(),
+                                                self.ui.sniffer_start_button, self.ui.sniffer_stop_button)
 
         # 修改控件状态
         self.ui.sniffer_stop_button.setEnabled(True)
@@ -126,14 +127,9 @@ class MainWindow(QMainWindow):
         # 关闭嗅探线程
         if self._sniffer_tool is not None:
             self._sniffer_tool.stop_sniffer_thread()
+            self._sniffer_tool = None
 
-        # 修改控件状态
-        self.ui.sniffer_start_button.setEnabled(True)
-        self.ui.sniffer_stop_button.setEnabled(False)
-
-        # 关闭网卡混杂模式
-        OtherToolFunctionSet.turn_net_card_promisc(False)
-        self.statusBar().showMessage('已停止。网卡混杂模式已关闭。')
+            self.statusBar().showMessage('正在停止……')
 
     def start_scan_thread(self):
         """
@@ -171,11 +167,9 @@ class MainWindow(QMainWindow):
         """
         if self._scan_tool is not None:
             self._scan_tool.stop_scan_thread()
+            self._scan_tool = None
 
-        # 修改控件状态
-        self.ui.scan_start_button.setEnabled(True)
-        self.ui.scan_stop_button.setEnabled(False)
-        self.statusBar().showMessage('端口扫描已停止。')
+            self.statusBar().showMessage('正在停止……')
 
     def closeEvent(self, event: QCloseEvent):
         """
